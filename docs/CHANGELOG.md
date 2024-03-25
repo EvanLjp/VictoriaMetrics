@@ -64,6 +64,7 @@ See also [LTS releases](https://docs.victoriametrics.com/lts-releases/).
 * BUGFIX: [vmctl](https://docs.victoriametrics.com/vmctl.html): properly parse TLS key and CA files for [InfluxDB](https://docs.victoriametrics.com/vmctl/#migrating-data-from-influxdb-1x) and [OpenTSDB](https://docs.victoriametrics.com/vmctl/#migrating-data-from-opentsdb) migration modes.
 * BUGFIX: [vmui](https://docs.victoriametrics.com/#vmui): fix VictoriaLogs UI query handling to correctly apply `_time` filter across all queries. See [this issue](https://github.com/VictoriaMetrics/VictoriaMetrics/issues/5920).
 * BUGFIX: [Single-node VictoriaMetrics](https://docs.victoriametrics.com/) and `vmselect` in [VictoriaMetrics cluster](https://docs.victoriametrics.com/cluster-victoriametrics/): limit duration of requests to /api/v1/labels, /api/v1/label/.../values or /api/v1/series with `-search.maxLabelsAPIDuration` duration. Before, `-search.maxExportDuration` value was used by mistake. Thanks to @kbweave for the [pull request](https://github.com/VictoriaMetrics/VictoriaMetrics/pull/5992).
+* BUGFIX: properly wait for force merge to be completed during the shutdown. See [this issue](https://github.com/VictoriaMetrics/VictoriaMetrics/issues/5944) for the details.
 
 ## [v1.99.0](https://github.com/VictoriaMetrics/VictoriaMetrics/releases/tag/v1.99.0)
 
