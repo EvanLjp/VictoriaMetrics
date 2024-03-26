@@ -447,7 +447,7 @@ func (tb *table) finalDedupWatcher() {
 				// Do not run final dedup for the current month.
 				continue
 			}
-			if err := ptw.pt.runFinalDedup(); err != nil {
+			if err := ptw.pt.runFinalDedup(tb.stop); err != nil {
 				logger.Errorf("cannot run final dedup for partition %s: %s", ptw.pt.name, err)
 				continue
 			}

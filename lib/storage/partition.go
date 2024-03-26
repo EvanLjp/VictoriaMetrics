@@ -1311,12 +1311,12 @@ func (pt *partition) releasePartsToMerge(pws []*partWrapper) {
 	pt.partsLock.Unlock()
 }
 
-func (pt *partition) runFinalDedup() error {
+func (pt *partition) runFinalDedup(stop chan struct{}) error {
 	requiredDedupInterval, actualDedupInterval := pt.getRequiredDedupInterval()
 	t := time.Now()
 	logger.Infof("starting final dedup for partition %s using requiredDedupInterval=%d ms, since the partition has smaller actualDedupInterval=%d ms",
 		pt.bigPartsPath, requiredDedupInterval, actualDedupInterval)
-	if err := pt.ForceMergeAllParts(pt.stopCh); err != nil {
+	if err := pt.ForceMergeAllParts(stop); err != nil {
 		return fmt.Errorf("cannot perform final dedup for partition %s: %w", pt.bigPartsPath, err)
 	}
 	logger.Infof("final dedup for partition %s has been finished in %.3f seconds", pt.bigPartsPath, time.Since(t).Seconds())
